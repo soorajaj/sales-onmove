@@ -1,0 +1,53 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="BottomV3ButtonStyle">
+        <item name="android:textColor">@color/green_teal_new</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MaterialSearchViewStyle">
+        <!-- Background for the search bar -->
+        <item name="searchBackground">@drawable/custom_spinner_background</item>
+
+        <!-- Change voice icon -->
+        <item name="searchVoiceIcon">@drawable/ic_keyboard_voice_black_24dp</item>
+
+        <!-- Change clear text icon -->
+        <item name="searchCloseIcon">@drawable/ic_action_navigation_close</item>
+
+        <!-- Change up icon -->
+        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back</item>
+
+
+        <!-- Change background for the suggestions list view -->
+        <item name="searchSuggestionBackground">@android:color/black</item>
+
+        <!-- Change text color for edit text. This will also be the color of the cursor -->
+        <item name="android:textColor">@android:color/black</item>
+
+        <!-- Change hint text color for edit text -->
+        <item name="android:textColorHint">@color/grey_lines_new</item>
+
+        <!-- Hint for edit text -->
+        <item name="android:hint">@string/search_hint</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">8dp</item>
+    </style>
+
+</resources>

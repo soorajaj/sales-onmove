@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragments.StockList">
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/card"
+        android:visibility="visible"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/sv_full_search"
+                style="@style/MaterialSearchViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/relativ_list"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/card"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_stocklist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/relativelayout_button"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:id="@+id/relativelayout_button"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/BottomV3ButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/textview_goto"
+                    android:background="@drawable/green_border_custom"
+                    android:gravity="center"
+                    android:text="Generate Sales Invoice"
+                    android:textColor="@color/colorPrimary" />
+            </RelativeLayout>
+        </RelativeLayout>
+</RelativeLayout>

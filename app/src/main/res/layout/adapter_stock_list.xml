@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear_layout"
+        android:background="#00000000"
+        android:gravity="center">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:id="@+id/click_card"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textview_itemname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="item name"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textview_itemQty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="item name"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/textview_mrp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="item name"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+</LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:id="@+id/layout_sel"
+                    android:visibility="gone"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/textview_sqty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="item name"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/textview_sprize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="item name"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
