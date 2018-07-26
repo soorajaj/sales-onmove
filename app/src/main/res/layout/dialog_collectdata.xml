@@ -98,7 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:hint="enter price"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:singleLine="true"
                         android:imeOptions="actionDone"
                         android:id="@+id/edittextitem_price"

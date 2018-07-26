@@ -156,6 +156,7 @@ public class LandingPage extends AppCompatActivity
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.fragment_landing, fragment);
             transaction.commit();
+            mStockListArrayList = StockDetail.listAll(StockDetail.class);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

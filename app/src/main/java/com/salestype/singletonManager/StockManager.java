@@ -36,6 +36,9 @@ public class StockManager {
     public void updateQty(int pos,Double qty){
         arrayList.get(pos).setBalances(qty);
     }
+    public void updatePrice(int pos,Double price){
+        arrayList.get(pos).setSRate(price);
+    }
     public void removeItem(int pos){
       arrayList.remove(pos);
     }

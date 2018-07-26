@@ -63,6 +63,7 @@ public class StockList extends Fragment {
         if (getArguments() != null) {
         }
         mStockListArrayList = listener1.Loaddata();
+//        mStockListArrayList = StockDetail.listAll(StockDetail.class);
     }
 
     @Override
@@ -158,11 +159,12 @@ public class StockList extends Fragment {
                             stockDetail.setSelected(true);
                             stockDetail.setSelectedQty(Double.parseDouble(edittextitem_quandity.getText().toString()));
                             ObjectFactory.getInstance().getStockmanager(getActivity()).addOrderItem(0, stockDetail1);
+
                             stockListAdapter.notifyDataSetChanged();
                             dialog.dismiss();
                             relativelayout_button.setVisibility(View.VISIBLE);
                         } else {
-                            Toast.makeText(getActivity(), "Only " + String.valueOf(stockDetail.getBalances()) + " item availabel", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Only " + String.valueOf(stockDetail.getBalances()) + " item available", Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(getActivity(),"please fill the Quantity field",Toast.LENGTH_SHORT).show();

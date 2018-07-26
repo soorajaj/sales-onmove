@@ -1,6 +1,7 @@
 package com.salestype.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.salestype.R;
+import com.salestype.listener.GetInvoice;
 import com.salestype.model.Invoice;
 
 import java.util.List;
@@ -21,10 +23,11 @@ public class MysalesAdapter  extends RecyclerView.Adapter<MysalesAdapter.CustomV
 
     private MysalesAdapter.CustomViewHolder mHolder;
     private List<Invoice> mysailslist;
-
-    public MysalesAdapter(Context mContext, List<Invoice> mysailslist) {
+    private GetInvoice getInvoice;
+    public MysalesAdapter(Context mContext, List<Invoice> mysailslist,GetInvoice getInvoice) {
         this.mContext = mContext;
         this.mysailslist = mysailslist;
+        this.getInvoice=getInvoice;
     }
 
     @Override
@@ -42,6 +45,12 @@ public class MysalesAdapter  extends RecyclerView.Adapter<MysalesAdapter.CustomV
         holder.textview_crdate.setText(" "+invoice.getCreatedDate());
         holder.textview_voucherid.setText(" "+String.valueOf(invoice.getInvoiceNo()));
         holder.textview_itemtotal.setText(" "+String.valueOf(invoice.getGrandTotal()));
+        holder.click_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getInvoice.getInvoice(invoice);
+            }
+        });
     }
 
     @Override
@@ -53,6 +62,7 @@ public class MysalesAdapter  extends RecyclerView.Adapter<MysalesAdapter.CustomV
             implements View.OnClickListener, View.OnLongClickListener {
 
         public TextView textview_customername,textview_voucherid,textview_crdate,textview_itemtotal;
+        public CardView click_card;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -60,6 +70,7 @@ public class MysalesAdapter  extends RecyclerView.Adapter<MysalesAdapter.CustomV
             this.textview_voucherid = itemView.findViewById(R.id.textview_voucherid);
             this.textview_crdate = itemView.findViewById(R.id.textview_crdate);
             this.textview_itemtotal = itemView.findViewById(R.id.textview_itemtotal);
+            this.click_card=itemView.findViewById(R.id.click_card);
         }
 
         @Override

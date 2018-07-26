@@ -12,11 +12,21 @@ public class InvoiceItem extends SugarRecord {
     public String ItemName;
     public Double ItemQuantity;
     public int InvoiceNo;
+    public Double ItemPrice;
 
-    public InvoiceItem(String itemName, Double itemQuantity, int invoiceNo) {
+    public InvoiceItem(String itemName, Double itemQuantity, int invoiceNo,Double itemPrice) {
         ItemName = itemName;
         ItemQuantity = itemQuantity;
         InvoiceNo = invoiceNo;
+        ItemPrice=itemPrice;
+    }
+
+    public Double getItemPrice() {
+        return ItemPrice;
+    }
+
+    public void setItemPrice(Double itemPrice) {
+        ItemPrice = itemPrice;
     }
 
     public String getItemName() {

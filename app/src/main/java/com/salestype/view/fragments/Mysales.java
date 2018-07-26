@@ -1,6 +1,7 @@
 package com.salestype.view.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,8 +13,11 @@ import android.view.ViewGroup;
 
 import com.salestype.R;
 import com.salestype.adapter.MysalesAdapter;
+import com.salestype.listener.GetInvoice;
 import com.salestype.model.Invoice;
+import com.salestype.view.InvoiceDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,13 +47,25 @@ public class Mysales extends Fragment {
         try {
             recyclerview_mystocklit.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
             invoiceList = Invoice.listAll(Invoice.class);
-            MysalesAdapter mysalesAdapter = new MysalesAdapter(getActivity(), invoiceList);
+            MysalesAdapter mysalesAdapter = new MysalesAdapter(getActivity(), invoiceList, new GetInvoice() {
+                @Override
+                public void getInvoice(Invoice invoice) {
+                    ArrayList<Invoice> invoicelist = new ArrayList<Invoice>();
+                    invoicelist.add(invoice);
+                    Intent intent=new Intent(getActivity(), InvoiceDetails.class);
+                    intent.putParcelableArrayListExtra("invoicelist",invoicelist);
+                    startActivity(intent);
+                }
+            });
             recyclerview_mystocklit.setAdapter(mysalesAdapter);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return view;
+    }
+    private void LoadData(int invoiceid){
+
     }
 
     @Override

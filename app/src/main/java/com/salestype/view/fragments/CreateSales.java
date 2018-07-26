@@ -136,12 +136,13 @@ public class CreateSales extends Fragment {
                             invoice.save();
                             mStockListArrayList=ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList();
                             for (StockDetail mStockDetail:mStockListArrayList) {
-                                InvoiceItem invoiceItem=new InvoiceItem(mStockDetail.getPNAME(),mStockDetail.getBalances(),UtilsSharedPrefrence.getinvoiceNo(getContext()));
+                                InvoiceItem invoiceItem=new InvoiceItem(mStockDetail.getPNAME(),mStockDetail.getBalances(),UtilsSharedPrefrence.getinvoiceNo(getContext()),mStockDetail.getSRate());
                                 invoiceItem.save();
 
                             }
                             Toast.makeText(getActivity(),"invoice saved",Toast.LENGTH_SHORT).show();
                             ObjectFactory.getInstance().getStockmanager(getActivity()).cleanup();
+
                             UtilsSharedPrefrence.storeInvoiceNo(getActivity(),UtilsSharedPrefrence.getinvoiceNo(getActivity())+1);
                             listener.Loaddata(2);
                         }
@@ -194,14 +195,14 @@ public class CreateSales extends Fragment {
                     if (!edittextitem_quandity.getText().toString().equalsIgnoreCase("")){
                         if (Double.parseDouble(edittextitem_quandity.getText().toString())<=originalstock){
                             ObjectFactory.getInstance().getStockmanager(getActivity()).updateQty(position,Double.parseDouble(edittextitem_quandity.getText().toString()));
-                            ObjectFactory.getInstance().getStockmanager(getActivity()).updateQty(position,Double.parseDouble(edittextitem_price.getText().toString()));
+                            ObjectFactory.getInstance().getStockmanager(getActivity()).updatePrice(position,Double.parseDouble(edittextitem_price.getText().toString()));
 
                             stockListAdapter.notifyDataSetChanged();
                             stockListAdapter.calculat( ObjectFactory.getInstance().getStockmanager(getActivity()).getArrayList());
                             dialog.dismiss();
                         }
                         else {
-                            Toast.makeText(getActivity(), "Only " + String.valueOf(originalstock) + " item availabel", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Only " + String.valueOf(originalstock) + " item available", Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(getActivity(),"please fill the Quantity field",Toast.LENGTH_SHORT).show();
