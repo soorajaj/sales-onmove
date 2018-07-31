@@ -106,6 +106,7 @@ public class LandingPage extends AppCompatActivity
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.fragment_landing, fragment);
             transaction.commit();
+
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -157,6 +158,12 @@ public class LandingPage extends AppCompatActivity
             transaction.replace(R.id.fragment_landing, fragment);
             transaction.commit();
             mStockListArrayList = StockDetail.listAll(StockDetail.class);
+        }else if (pos==3){
+            Fragment fragment=new StockList();
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.fragment_landing, fragment);
+            transaction.commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

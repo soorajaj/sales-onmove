@@ -49,6 +49,9 @@ public class CreateSales extends Fragment {
     @BindView(R.id.linearlayout_Save)
     LinearLayout linearlayout_Save;
 
+    @BindView(R.id.linearlayout_addmore)
+    LinearLayout linearlayout_addmore;
+
     @BindView(R.id.txt_item_netprice)
     TextView txt_item_netprice;
 
@@ -97,6 +100,7 @@ public class CreateSales extends Fragment {
                     @Override
                     public void mDeleteItem(int pos, StockDetail stockDetail) {
                         ObjectFactory.getInstance().getStockmanager(getActivity()).removeItem(pos);
+                        stockListAdapter.calculat( ObjectFactory.getInstance().getStockmanager(getActivity()).getArrayList());
                         stockListAdapter.notifyDataSetChanged();
                     }
                 }, new Updatelis() {
@@ -125,6 +129,12 @@ public class CreateSales extends Fragment {
                     }
                 });
             }
+            linearlayout_addmore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.Loaddata(3);
+                }
+            });
             text_date.setText(utility.mGetCurrentDateTime());
 
             linearlayout_Save.setOnClickListener(new View.OnClickListener() {
