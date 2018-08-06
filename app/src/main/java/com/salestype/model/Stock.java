@@ -11,6 +11,10 @@ public class Stock {
     @Expose
     private List<StockDetail> stockDetails = null;
 
+    @SerializedName("CustomerDetails")
+    @Expose
+    private List<CustomerDetails> CustomerDetails = null;
+
     public List<StockDetail> getStockDetails() {
         return stockDetails;
     }
@@ -19,4 +23,11 @@ public class Stock {
         this.stockDetails = stockDetails;
     }
 
+    public List<CustomerDetails> getCustomerDetails() {
+        return CustomerDetails;
+    }
+
+    public void setCustomerDetails(List<CustomerDetails> customerDetails) {
+        CustomerDetails = customerDetails;
+    }
 }

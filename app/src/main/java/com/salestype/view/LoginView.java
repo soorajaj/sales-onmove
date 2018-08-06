@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.salestype.model.CustomerDetails;
 import com.salestype.model.Login;
 import com.salestype.model.Stock;
 import com.salestype.R;
@@ -122,6 +123,13 @@ public class LoginView extends AppCompatActivity {
                                 stockDetail.save();
 
                             }
+                            for (int i = 0; i < stock.getCustomerDetails().size(); i++) {
+                                CustomerDetails customerDetails = stock.getCustomerDetails().get(i);
+                                CustomerDetails  customerDetails1= new CustomerDetails(customerDetails.getLedgerID(),customerDetails.getLedgerName(),customerDetails.getBalance(),customerDetails.getAddress(),customerDetails.getCellPhone(),customerDetails.getCreditAmt());
+                                customerDetails1.save();
+
+                            }
+
                             pd.dismiss();
                             Intent intent=new Intent(LoginView.this,LandingPage.class);
                             startActivity(intent);

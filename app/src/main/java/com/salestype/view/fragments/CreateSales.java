@@ -13,18 +13,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orm.SugarRecord;
 import com.salestype.R;
+import com.salestype.adapter.VanSpinnerAdapter;
 import com.salestype.adapter.salesadapter;
 import com.salestype.listener.AlertListener;
 import com.salestype.listener.Calculatetotal;
 import com.salestype.listener.DeleteItem;
 import com.salestype.listener.Updatelis;
+import com.salestype.model.CustomerDetails;
 import com.salestype.model.Invoice;
 import com.salestype.model.InvoiceItem;
 import com.salestype.model.StockDetail;
@@ -36,6 +40,7 @@ import com.salestype.view.LandingPage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,19 +69,30 @@ public class CreateSales extends Fragment {
     @BindView(R.id.text_companyname)
     TextView text_companyname;
 
+    @BindView(R.id.txt_item_netbalance)
+    TextView txt_item_netbalance;
+
+    @BindView(R.id.txt_item_balance)
+    TextView txt_item_balance;
+
     @BindView(R.id.text_invoiceno)
     TextView text_invoiceno;
 
     @BindView(R.id.text_date)
     TextView text_date;
 
-    @BindView(R.id.edit_username)
-    EditText edit_username;
+//    @BindView(R.id.edit_username)
+//    EditText edit_username;
+
+
+    @BindView(R.id.spinner_customername)
+    Spinner spinner_customername;
 
     salesadapter stockListAdapter;
     ArrayList<StockDetail> mStockListArrayList = new ArrayList<>();
     private StockList.OnItemStartActivityListener listener;
-
+    private List<CustomerDetails> customerDetails;
+    CustomerDetails selected_customerDetails;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,8 +107,22 @@ public class CreateSales extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_sails, container, false);
         ButterKnife.bind(this, view);
-
         try {
+            customerDetails=CustomerDetails.listAll(CustomerDetails.class);
+            VanSpinnerAdapter vanSpinnerAdapter=new VanSpinnerAdapter(getActivity(),R.layout.adapter_vanspinner,R.id.title,customerDetails);
+            spinner_customername.setAdapter(vanSpinnerAdapter);
+            spinner_customername.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    selected_customerDetails=customerDetails.get(i);
+                    txt_item_netbalance.setText(String.valueOf(selected_customerDetails.getBalance()));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
             text_invoiceno.setText("Invoice No: "+UtilsSharedPrefrence.getinvoiceNo(getContext()));
             mStockListArrayList = ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList();
             if (mStockListArrayList != null && mStockListArrayList.size() != 0) {
@@ -141,8 +171,8 @@ public class CreateSales extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if (ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList().size()!=0){
-                        if (!edit_username.getText().toString().equalsIgnoreCase("")){
-                            Invoice invoice=new Invoice(UtilsSharedPrefrence.getinvoiceNo(getContext()),edit_username.getText().toString().trim(),text_date.getText().toString().trim(),Double.parseDouble(txt_item_netprice.getText().toString()));
+//                        if (!edit_username.getText().toString().equalsIgnoreCase("")){
+                            Invoice invoice=new Invoice(UtilsSharedPrefrence.getinvoiceNo(getContext()),selected_customerDetails.getLedgerName(),text_date.getText().toString().trim(),Double.parseDouble(txt_item_netprice.getText().toString()));
                             invoice.save();
                             mStockListArrayList=ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList();
                             for (StockDetail mStockDetail:mStockListArrayList) {
@@ -155,10 +185,10 @@ public class CreateSales extends Fragment {
 
                             UtilsSharedPrefrence.storeInvoiceNo(getActivity(),UtilsSharedPrefrence.getinvoiceNo(getActivity())+1);
                             listener.Loaddata(2);
-                        }
-                        else {
-                            Toast.makeText(getActivity(),"Customer name can't be empty",Toast.LENGTH_SHORT).show();
-                        }
+//                        }
+//                        else {
+//                            Toast.makeText(getActivity(),"Customer name can't be empty",Toast.LENGTH_SHORT).show();
+//                        }
                     }else {
                         utility.showInformationAlert(getActivity(), "No item to save, Invoice is Empty", new AlertListener() {
                             @Override

@@ -18,83 +18,101 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
                         <TextView
-                            android:layout_width="match_parent"
-                            android:text="Company name"
                             android:id="@+id/text_companyname"
-                            android:gravity="center"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
+                            android:layout_width="match_parent"
                             android:layout_height="35dp"
-                            android:layout_weight="8"/>
+                            android:layout_weight="8"
+                            android:gravity="center"
+                            android:text="Company name"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_height="wrap_content">
+                                android:orientation="vertical">
+
                                 <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/green_border_custom"
-                                    android:text=" Invoice No:10000000008"
-                                    android:layout_margin="2dp"
                                     android:id="@+id/text_invoiceno"
-                                    android:textSize="@dimen/text_size_total"
-                                    android:gravity="center_vertical"
-                                    android:layout_height="35dp" />
-                                <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_weight="1"
+                                    android:layout_height="35dp"
                                     android:layout_margin="2dp"
-                                    android:text=" Date:"
-                                    android:textSize="@dimen/text_size_total"
-                                    android:id="@+id/text_date"
+                                    android:layout_weight="1"
                                     android:background="@drawable/green_border_custom"
                                     android:gravity="center_vertical"
-                                    android:layout_height="35dp" />
+                                    android:text=" Invoice No:10000000008"
+                                    android:textSize="@dimen/text_size_total" />
+
+                                <TextView
+                                    android:id="@+id/text_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35dp"
+                                    android:layout_margin="2dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/green_border_custom"
+                                    android:gravity="center_vertical"
+                                    android:text=" Date:"
+                                    android:textSize="@dimen/text_size_total" />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_margin="2dp"
+                                    android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:background="@drawable/green_border_custom"
-                                    android:layout_height="wrap_content">
-                                    <EditText
+                                    android:layout_margin="2dp"
+                                    android:background="@drawable/green_border_custom">
+
+                                    <Spinner
+                                        android:id="@+id/spinner_customername"
                                         android:layout_width="match_parent"
-                                        android:layout_weight="1"
-                                        android:hint="customer anme"
-                                        android:singleLine="true"
-                                        android:imeOptions="actionDone"
-                                        android:inputType="text"
-                                        android:textSize="@dimen/text_size_total"
-                                        android:id="@+id/edit_username"
-                                        android:gravity="center_vertical"
-                                        android:layout_height="55dp" />
+                                        android:layout_height="65dp"
+                                        android:gravity="center">
+
+                                    </Spinner>
+                                    <!--<EditText-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_weight="1"-->
+                                    <!--android:hint="customer anme"-->
+                                    <!--android:singleLine="true"-->
+                                    <!--android:imeOptions="actionDone"-->
+                                    <!--android:inputType="text"-->
+                                    <!--android:textSize="@dimen/text_size_total"-->
+                                    <!--android:id="@+id/edit_username"-->
+                                    <!--android:gravity="center_vertical"-->
+                                    <!--android:layout_height="55dp" />-->
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
                     android:layout_marginTop="5dp"
+                    android:layout_weight="3"
                     android:background="@color/grey_new"
                     android:orientation="vertical">
 
@@ -134,8 +152,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="right"
                                     android:background="@color/white"
+                                    android:gravity="right"
                                     android:orientation="horizontal"
                                     android:padding="5dp">
 
@@ -160,68 +178,144 @@
 
                                 </RelativeLayout>
 
-                                <RelativeLayout
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@color/white"
-                                    android:gravity="right"
-                                    android:orientation="horizontal"
-                                    android:padding="5dp">
+                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        android:id="@+id/label_item_tax"
-                                        android:layout_width="wrap_content"
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:gravity="right"
-                                        android:text="Tax Amount:"
-                                        android:textSize="@dimen/text_size_total"
-                                        android:textStyle="normal" />
-
-                                    <TextView
-                                        android:id="@+id/txt_item_tax"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
+                                        android:layout_weight="1"
+                                        android:visibility="gone"
+                                        android:background="@color/white"
                                         android:gravity="left"
-                                        android:layout_toRightOf="@+id/label_item_tax"
-                                        android:text="0"
-                                        android:textColor="@color/black" />
+                                        android:orientation="horizontal"
+                                        android:padding="5dp">
+
+                                        <TextView
+                                            android:id="@+id/label_item_balance"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:gravity="right"
+                                            android:text="Previous Balance:"
+                                            android:textSize="@dimen/text_size_total"
+                                            android:textStyle="normal" />
+
+                                        <TextView
+                                            android:id="@+id/txt_item_balance"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/label_item_balance"
+                                            android:gravity="left"
+                                            android:text="0"
+                                            android:textColor="@color/black" />
 
 
-                                </RelativeLayout>
-                                <RelativeLayout
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@color/white"
+                                        android:gravity="right"
+                                        android:orientation="horizontal"
+                                        android:padding="5dp">
+
+                                        <TextView
+                                            android:id="@+id/label_item_tax"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:gravity="right"
+                                            android:text="Tax Amount:"
+                                            android:textSize="@dimen/text_size_total"
+                                            android:textStyle="normal" />
+
+                                        <TextView
+                                            android:id="@+id/txt_item_tax"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/label_item_tax"
+                                            android:gravity="left"
+                                            android:text="0"
+                                            android:textColor="@color/black" />
+
+
+                                    </RelativeLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@color/white"
-                                    android:gravity="right"
-                                    android:orientation="horizontal"
-                                    android:padding="5dp">
+                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        android:id="@+id/label_netprice"
-                                        android:layout_width="wrap_content"
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:gravity="right"
-                                        android:text="Total Amount To Pay:"
-                                        android:textSize="@dimen/text_size_total"
-                                        android:textStyle="normal" />
-
-                                    <TextView
-                                        android:id="@+id/txt_item_netprice"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:layout_toRightOf="@+id/label_netprice"
+                                        android:layout_weight="1"
+                                        android:background="@color/white"
                                         android:gravity="left"
-                                        android:text="0"
-                                        android:textColor="@color/black" />
+                                        android:orientation="horizontal"
+                                        android:padding="5dp">
+
+                                        <TextView
+                                            android:id="@+id/label_netbalance"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:gravity="right"
+                                            android:text="Previous Balance:"
+                                            android:textSize="@dimen/text_size_total"
+                                            android:textStyle="normal" />
+
+                                        <TextView
+                                            android:id="@+id/txt_item_netbalance"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/label_netbalance"
+                                            android:gravity="right"
+                                            android:text="0"
+                                            android:textColor="@color/black" />
 
 
-                                </RelativeLayout>
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@color/white"
+                                        android:gravity="right"
+                                        android:orientation="horizontal"
+                                        android:padding="5dp">
+
+                                        <TextView
+                                            android:id="@+id/label_netprice"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:gravity="right"
+                                            android:text="Total Amount To Pay:"
+                                            android:textSize="@dimen/text_size_total"
+                                            android:textStyle="normal" />
+
+                                        <TextView
+                                            android:id="@+id/txt_item_netprice"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toRightOf="@+id/label_netprice"
+                                            android:gravity="left"
+                                            android:text="0"
+                                            android:textColor="@color/black" />
+
+
+                                    </RelativeLayout>
+                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -325,8 +419,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:gravity="bottom"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearlayout_addmore"
@@ -334,6 +427,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:layout_margin="2dp"
                     android:background="@drawable/green_border_custom"
                     android:gravity="center"
                     android:visibility="visible">
@@ -349,12 +443,14 @@
                         android:textAllCaps="false"
                         android:textColor="@color/green_teal_new" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearlayout_Save"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:layout_margin="2dp"
                     android:background="@drawable/green_border_custom"
                     android:gravity="center"
                     android:visibility="visible">

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.salestype.R;
+import com.salestype.model.CustomerDetails;
 import com.salestype.model.Vandata;
 
 import java.util.List;
@@ -17,13 +18,13 @@ import java.util.List;
 /**
  * Created by sooraj on 10/7/18.
  */
-public class VanSpinnerAdapter extends ArrayAdapter<Vandata> {
+public class VanSpinnerAdapter extends ArrayAdapter<CustomerDetails> {
     LayoutInflater flater;
 
-    public VanSpinnerAdapter(Activity context, int resouceId, int textviewId, List<Vandata> list){
+    public VanSpinnerAdapter(Activity context, int resouceId, int textviewId, List<CustomerDetails> list){
 
         super(context,resouceId,textviewId, list);
-//        flater = context.getLayoutInflater();
+        flater = context.getLayoutInflater();
     }
 
     @Override
@@ -39,7 +40,7 @@ public class VanSpinnerAdapter extends ArrayAdapter<Vandata> {
 
     private View rowview(View convertView , int position){
 
-        Vandata rowItem = getItem(position);
+        CustomerDetails rowItem = getItem(position);
 
         viewHolder holder ;
         View rowview = convertView;
@@ -54,7 +55,7 @@ public class VanSpinnerAdapter extends ArrayAdapter<Vandata> {
         }else{
             holder = (viewHolder) rowview.getTag();
         }
-        holder.mTxtTitle.setText(rowItem.getmVanName());
+        holder.mTxtTitle.setText(rowItem.getLedgerName());
 
         return rowview;
     }
