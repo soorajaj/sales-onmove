@@ -62,38 +62,6 @@
                         android:layout_marginBottom="10dp"
                         android:id="@+id/text_dilog_message"
                         android:layout_height="match_parent" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal"
-                        android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text=""
-                            android:id="@+id/textview_qty"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:id="@+id/text_mrp"
-                            android:gravity="center"
-                            android:text=""
-                            />
-                    </LinearLayout>
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="enter QTY"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:imeOptions="actionDone"
-                        android:id="@+id/edittextitem_quandity"
-                        android:layout_height="match_parent" />
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_weight="1"

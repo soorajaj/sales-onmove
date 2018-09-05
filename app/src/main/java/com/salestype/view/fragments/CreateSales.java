@@ -3,7 +3,6 @@ package com.salestype.view.fragments;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,11 +19,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.orm.SugarRecord;
 import com.salestype.R;
 import com.salestype.adapter.VanSpinnerAdapter;
 import com.salestype.adapter.salesadapter;
-import com.salestype.listener.AlertListener;
 import com.salestype.listener.Calculatetotal;
 import com.salestype.listener.DeleteItem;
 import com.salestype.listener.Updatelis;
@@ -36,7 +33,6 @@ import com.salestype.singletonManager.ObjectFactory;
 import com.salestype.utilites.ItemClickSupport;
 import com.salestype.utilites.UtilsSharedPrefrence;
 import com.salestype.utilites.utility;
-import com.salestype.view.LandingPage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -81,10 +77,6 @@ public class CreateSales extends Fragment {
     @BindView(R.id.text_date)
     TextView text_date;
 
-//    @BindView(R.id.edit_username)
-//    EditText edit_username;
-
-
     @BindView(R.id.spinner_customername)
     Spinner spinner_customername;
 
@@ -96,9 +88,7 @@ public class CreateSales extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
-        }
     }
 
     @Override
@@ -171,36 +161,10 @@ public class CreateSales extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if (ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList().size()!=0){
-//                        if (!edit_username.getText().toString().equalsIgnoreCase("")){
-                            Invoice invoice=new Invoice(UtilsSharedPrefrence.getinvoiceNo(getContext()),selected_customerDetails.getLedgerName(),text_date.getText().toString().trim(),Double.parseDouble(txt_item_netprice.getText().toString()));
-                            invoice.save();
-                            mStockListArrayList=ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList();
-                            for (StockDetail mStockDetail:mStockListArrayList) {
-                                InvoiceItem invoiceItem=new InvoiceItem(mStockDetail.getPNAME(),mStockDetail.getBalances(),UtilsSharedPrefrence.getinvoiceNo(getContext()),mStockDetail.getSRate());
-                                invoiceItem.save();
-
-                            }
-                            Toast.makeText(getActivity(),"invoice saved",Toast.LENGTH_SHORT).show();
-                            ObjectFactory.getInstance().getStockmanager(getActivity()).cleanup();
-
-                            UtilsSharedPrefrence.storeInvoiceNo(getActivity(),UtilsSharedPrefrence.getinvoiceNo(getActivity())+1);
-                            listener.Loaddata(2);
-//                        }
-//                        else {
-//                            Toast.makeText(getActivity(),"Customer name can't be empty",Toast.LENGTH_SHORT).show();
-//                        }
-                    }else {
-                        utility.showInformationAlert(getActivity(), "No item to save, Invoice is Empty", new AlertListener() {
-                            @Override
-                            public void onSubmit() {
-
-                            }
-
-                            @Override
-                            public void onCancel() {
-
-                            }
-                        });
+                        showSave(selected_customerDetails,getActivity());
+                    }
+                    else {
+                        Toast.makeText(getActivity(),R.string.msg_no_item,Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -227,8 +191,8 @@ public class CreateSales extends Fragment {
             TextView button_ok = dialog.findViewById(R.id.button_ok);
             text_dilog_message.setText(stockDetail.getPNAME());
             edittextitem_price.setText(String.valueOf(stockDetail.getSRate()));
-            textview_itemQty.setText("Added Qty: " + stockDetail.getBalances());
-            textview_itemprice.setText("MRP: " + stockDetail.getSRate());
+            textview_itemQty.setText(getString(R.string.label_add_qty) + stockDetail.getBalances());
+            textview_itemprice.setText(getString(R.string.label_mrp) + stockDetail.getSRate());
             button_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -245,7 +209,7 @@ public class CreateSales extends Fragment {
                             Toast.makeText(getActivity(), "Only " + String.valueOf(originalstock) + " item available", Toast.LENGTH_SHORT).show();
                         }
                     }else {
-                        Toast.makeText(getActivity(),"please fill the Quantity field",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.msg_qty_empty,Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -260,6 +224,58 @@ public class CreateSales extends Fragment {
             e.printStackTrace();
         }
     }
+
+    public void showSave(final CustomerDetails selected_customerDetails, final Activity activity) {
+        try {
+            final Dialog dialog = new Dialog(activity, R.style.Theme_AppCompat_DayNight_Dialog_MinWidth);
+            dialog.setContentView(R.layout.dialog_saveinvoice);
+            dialog.setCancelable(false);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            TextView text_dilog_message = dialog.findViewById(R.id.text_dilog_message);
+            TextView button_cancel = dialog.findViewById(R.id.button_cancel);
+            final EditText edittextitem_price = dialog.findViewById(R.id.edittextitem_price);
+            TextView button_ok = dialog.findViewById(R.id.button_ok);
+            text_dilog_message.setText(getString(R.string.label_total_balance)+String.valueOf(selected_customerDetails.getBalance()+Double.parseDouble(txt_item_netprice.getText().toString())));
+            button_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!edittextitem_price.getText().toString().equalsIgnoreCase("")){
+
+                        if (ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList().size()!=0){
+//                        if (!edit_username.getText().toString().equalsIgnoreCase("")){
+                            Invoice invoice=new Invoice(UtilsSharedPrefrence.getinvoiceNo(getContext()),selected_customerDetails.getLedgerName(),text_date.getText().toString().trim(),Double.parseDouble(txt_item_netprice.getText().toString()),Double.parseDouble(edittextitem_price.getText().toString().trim()));
+                            invoice.save();
+                            mStockListArrayList=ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList();
+                            for (StockDetail mStockDetail:mStockListArrayList) {
+                                InvoiceItem invoiceItem=new InvoiceItem(mStockDetail.getPNAME(),mStockDetail.getBalances(),UtilsSharedPrefrence.getinvoiceNo(getContext()),mStockDetail.getSRate(),mStockDetail.getProductID(),mStockDetail.getUnitId(),mStockDetail.getBatchId());
+                                invoiceItem.save();
+
+                            }
+                            Toast.makeText(getActivity(), R.string.msg_invoice_saved,Toast.LENGTH_SHORT).show();
+                            ObjectFactory.getInstance().getStockmanager(getActivity()).cleanup();
+                            UtilsSharedPrefrence.storeInvoiceNo(getActivity(),UtilsSharedPrefrence.getinvoiceNo(getActivity())+1);
+                            listener.Loaddata(2);
+                            dialog.dismiss();
+                        }else {
+                            Toast.makeText(getActivity(), R.string.msg_no_item,Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(getActivity(), R.string.msg_amount_not_empty,Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            button_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void onDetach() {

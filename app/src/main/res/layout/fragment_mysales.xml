@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.Mysales">
-
     <!-- TODO: Update blank fragment layout -->
    <android.support.v7.widget.RecyclerView
        android:layout_width="match_parent"
@@ -12,5 +11,24 @@
        android:layout_height="match_parent">
 
    </android.support.v7.widget.RecyclerView>
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_alignBottom="@+id/recyclerview_mystocklit"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:visibility="gone"
+            android:id="@+id/linear_button_send"
+            android:background="@drawable/green_border_custom"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:textColor="@color/green_teal_new"
+                android:layout_height="match_parent"
+                android:text="Send All Data"/>
+        </LinearLayout>
+    </FrameLayout>
 </RelativeLayout>

@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,6 @@ import com.salestype.listener.Updatelis;
 import com.salestype.model.StockDetail;
 import com.salestype.singletonManager.ObjectFactory;
 import com.salestype.utilites.ItemClickSupport;
-import com.salestype.view.LandingPage;
 
 import java.util.List;
 
@@ -76,7 +74,7 @@ public class StockList extends Fragment {
              mCloseButton = (ImageView) sv_full_search.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
             mCloseButton.setVisibility(View.INVISIBLE);
             sv_full_search.setIconified(false);
-            sv_full_search.setQueryHint("Search for Products");
+            sv_full_search.setQueryHint(getString(R.string.label_search_query));
             sv_full_search.clearFocus();
             if (ObjectFactory.getInstance().getStockmanager(getContext()).getArrayList().size() != 0) {
                 relativelayout_button.setVisibility(View.VISIBLE);
@@ -147,15 +145,15 @@ public class StockList extends Fragment {
             edittextitem_quandity.requestFocus();
             InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-            textview_itemQty.setText("Av.Qty: "+stockDetail.getBalances());
-            textview_itemprice.setText("MRP: "+stockDetail.getSRate());
+            textview_itemQty.setText(getString(R.string.label_av_qty)+stockDetail.getBalances());
+            textview_itemprice.setText(getString(R.string.label_mrp)+stockDetail.getSRate());
             button_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (!edittextitem_quandity.getText().toString().equalsIgnoreCase("")) {
                         if (Double.parseDouble(edittextitem_quandity.getText().toString()) <= stockDetail.getBalances()) {
                             StockDetail stockDetail1 = new StockDetail(stockDetail.getProductID(), stockDetail.getPNAME(),
-                                    stockDetail.getBatchCode(), Double.parseDouble(edittextitem_quandity.getText().toString()), stockDetail.getSRate(),stockDetail.getBalances());
+                                    stockDetail.getBatchCode(), Double.parseDouble(edittextitem_quandity.getText().toString()), stockDetail.getSRate(),stockDetail.getBalances(),stockDetail.getUnitId(),stockDetail.getBatchId());
                             stockDetail.setSelected(true);
                             stockDetail.setSelectedQty(Double.parseDouble(edittextitem_quandity.getText().toString()));
                             ObjectFactory.getInstance().getStockmanager(getActivity()).addOrderItem(0, stockDetail1);
@@ -167,7 +165,7 @@ public class StockList extends Fragment {
                             Toast.makeText(getActivity(), "Only " + String.valueOf(stockDetail.getBalances()) + " item available", Toast.LENGTH_SHORT).show();
                         }
                     }else {
-                        Toast.makeText(getActivity(),"please fill the Quantity field",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),R.string.msg_qty_empty,Toast.LENGTH_SHORT).show();
                     }
 //                   listener1.updatelist(position);
                 }

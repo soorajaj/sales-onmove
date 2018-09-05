@@ -109,6 +109,7 @@ public class LoginView extends AppCompatActivity {
                     public void onSuccess(Stock stock) {
                         try {
                             StockDetail.deleteAll(StockDetail.class);
+                            CustomerDetails.deleteAll(CustomerDetails.class);
                         } catch (Exception e) {
                             e.printStackTrace();
                             pd.dismiss();

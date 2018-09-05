@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_add_qty">Added Qty:</string>
+    <string name="label_mrp">MRP:</string>
+    <string name="msg_qty_empty">please fill the Quantity field</string>
+    <string name="label_total_balance">Your Total Balance is:</string>
+    <string name="msg_invoice_saved">invoice saved</string>
+    <string name="msg_no_item">No item to save, Invoice is Empty</string>
+    <string name="msg_amount_not_empty">Amount Can\'t be Empty</string>
+    <string name="label_search_query">Search for Products</string>
+    <string name="label_av_qty">Av.Qty:</string>
+</resources>

@@ -15,12 +15,22 @@ public class Invoice extends SugarRecord implements Parcelable {
     public String CustomerName;
     public String CreatedDate;
     public Double GrandTotal;
+    public Double paidTotal;
 
-    public Invoice(int invoiceNo, String customerName, String createdDate, Double grandTotal) {
+    public Invoice(int invoiceNo, String customerName, String createdDate, Double grandTotal,Double paidTotal) {
         InvoiceNo = invoiceNo;
         CustomerName = customerName;
         CreatedDate = createdDate;
         GrandTotal = grandTotal;
+        paidTotal=paidTotal;
+    }
+
+    public Double getPaidTotal() {
+        return paidTotal;
+    }
+
+    public void setPaidTotal(Double paidTotal) {
+        this.paidTotal = paidTotal;
     }
 
     protected Invoice(Parcel in) {
@@ -31,6 +41,11 @@ public class Invoice extends SugarRecord implements Parcelable {
             GrandTotal = null;
         } else {
             GrandTotal = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            paidTotal = null;
+        } else {
+            paidTotal = in.readDouble();
         }
     }
 
@@ -93,6 +108,12 @@ public class Invoice extends SugarRecord implements Parcelable {
         } else {
             parcel.writeByte((byte) 1);
             parcel.writeDouble(GrandTotal);
+        }
+        if (paidTotal == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(paidTotal);
         }
     }
 }

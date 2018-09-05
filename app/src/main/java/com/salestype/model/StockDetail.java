@@ -27,13 +27,15 @@ public class StockDetail extends SugarRecord {
         this.mRP = mRP;
     }
 
-    public StockDetail(Integer productID, String pNAME, String batchCode, Double balances, Double sRate,Double orgbalance) {
+    public StockDetail(Integer productID, String pNAME, String batchCode, Double balances, Double sRate,Double orgbalance,Integer unitId,String batchId) {
         this.productID = productID;
         this.pNAME = pNAME;
         this.batchCode = batchCode;
         this.balances = balances;
         this.sRate = sRate;
         this.orgbalance=orgbalance;
+        this.unitId=unitId;
+        this.batchId=batchId;
     }
 
     @SerializedName("branchid")

@@ -13,12 +13,35 @@ public class InvoiceItem extends SugarRecord {
     public Double ItemQuantity;
     public int InvoiceNo;
     public Double ItemPrice;
+    private Integer ItemProductID;
+    private Integer ItemUnitId;
+    private String ItemBatchId;
 
-    public InvoiceItem(String itemName, Double itemQuantity, int invoiceNo,Double itemPrice) {
+
+    public InvoiceItem(String itemName, Double itemQuantity, int invoiceNo,Double itemPrice,int ItemProductID,int ItemUnitId,String batchId) {
         ItemName = itemName;
         ItemQuantity = itemQuantity;
         InvoiceNo = invoiceNo;
         ItemPrice=itemPrice;
+        ItemProductID=ItemProductID;
+        ItemUnitId=ItemUnitId;
+        batchId=batchId;
+    }
+
+    public Integer getItemProductID() {
+        return ItemProductID;
+    }
+
+    public void setItemProductID(Integer itemProductID) {
+        ItemProductID = itemProductID;
+    }
+
+    public Integer getItemUnitId() {
+        return ItemUnitId;
+    }
+
+    public void setItemUnitId(Integer itemUnitId) {
+        ItemUnitId = itemUnitId;
     }
 
     public Double getItemPrice() {

@@ -1,8 +1,6 @@
 package com.salestype.view.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,8 +32,6 @@ public class Mysales extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -73,5 +69,7 @@ public class Mysales extends Fragment {
         super.onDetach();
 
     }
-
+    private void mCreatDataSet(){
+        Jso
+    }
 }
